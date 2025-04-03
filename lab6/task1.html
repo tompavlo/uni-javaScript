@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script language = "JavaScript">
+    now = new Date ();
+    let curMinutes = now.getMinutes()
+    if(curMinutes<10){
+        curMinutes = "0" + now.getMinutes()
+    }
+    let time = "Time: " + now.getHours() + ":"
+    document.write ( "Time:" + now.getHours () + ":" + curMinutes + "<br>");
+    document.write ( "Date:" + (now.getMonth () + 1) + "/" + now.getDate () + "/" +
+        (Now.getYear ()))
+    </script>
+
+</body>
+</html>
