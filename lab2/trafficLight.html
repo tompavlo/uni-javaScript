@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Симулятор світлофора</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+      font-family: Arial;
+    }
+
+    .traffic-light {
+      width: 100px;
+      background: #333;
+      padding: 20px;
+      border-radius: 20px;
+    }
+
+    .light {
+      width: 60px;
+      height: 60px;
+      margin: 15px auto;
+      border-radius: 50%;
+      background-color: #111;
+      transition: background-color 0.5s;
+    }
+
+    .red.active {
+      background-color: red;
+    }
+
+    .yellow.active {
+      background-color: yellow;
+    }
+
+    .green.active {
+      background-color: green;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Симулятор світлофору</h2>
+
+<div class="traffic-light">
+  <div class="light red" id="redLight"></div>
+  <div class="light yellow" id="yellowLight"></div>
+  <div class="light green" id="greenLight"></div>
+</div>
+
+<button onclick="changeLight()">Змінити колір</button>
+
+<script>
+  let current = 0;
+
+  function changeLight() {
+    const lights = ["redLight", "yellowLight", "greenLight"];
+    lights.forEach(id => document.getElementById(id).classList.remove("active"));
+
+    const activeId = lights[current];
+    document.getElementById(activeId).classList.add("active");
+
+    current = (current + 1) % lights.length;
+  }
+
+  changeLight();
+</script>
+
+</body>
+</html>

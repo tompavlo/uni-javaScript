@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="text-align: center">
+    <img src="Screenshot%202025-04-19%20125245.png" class="bulb">
+    <div style="margin: auto">
+    <button class="turnOn">Turn on</button>
+    <button class="turnOff">Turn off</button>
+    </div>
+    <script>
+        var power = false
+        document.getElementsByClassName("turnOn")[0].addEventListener("click", function (){
+            if(!power){
+                power = true
+                document.getElementsByClassName("bulb")[0].src="Screenshot 2025-04-19 125311.png"
+            }
+        })
+        document.getElementsByClassName("turnOff")[0].addEventListener("click", function (){
+            if(power){
+                power = false
+                document.getElementsByClassName("bulb")[0].src="Screenshot%202025-04-19%20125245.png"
+            }
+        })
+    </script>
+</div>
+</body>
+</html>
