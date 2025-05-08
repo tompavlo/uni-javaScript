@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Події з мишкою</title>
+  <style>
+    #line2 {
+      font-size: 16pt;
+      color: black;
+      background-color: white;
+      cursor: pointer;
+    }
+    #line3 {
+      background-color: white;
+      cursor: pointer;
+    }
+    #line4 {
+      background-color: lightblue;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>П'ять подій з мишкою</h1>
+
+<p id="line2" onclick="toggleStyle()">Клацніть на мене мишкою</p>
+
+<p id="line3" onmousedown="changeBackgroundColor(true)" onmouseup="changeBackgroundColor(false)" onmouseout="resetBackgroundColor()">На цьому тексті натисніть, потримайте і відпустіть ліву кнопку мишки</p>
+
+<p id="line4" onmouseover="changeHoverColor(true)" onmouseout="changeHoverColor(false)">Повільно проведіть курсором мишки по цій написи</p>
+
+<script>
+  let isClicked = false;
+
+  function toggleStyle() {
+    const line2 = document.getElementById("line2");
+    if (isClicked) {
+      line2.style.fontSize = "16pt";
+      line2.style.color = "black";
+      line2.style.backgroundColor = "white";
+    } else {
+      line2.style.fontSize = "48pt";
+      line2.style.color = "white";
+      line2.style.backgroundColor = "lightblue";
+    }
+    isClicked = !isClicked;
+  }
+
+  function changeBackgroundColor(isMouseDown) {
+    const line3 = document.getElementById("line3");
+    if (isMouseDown) {
+      line3.style.backgroundColor = "green";
+    } else {
+      line3.style.backgroundColor = "yellow";
+    }
+  }
+
+  function resetBackgroundColor() {
+    const line3 = document.getElementById("line3");
+    if (line3.style.backgroundColor !== "green") {
+      line3.style.backgroundColor = "white";
+    }
+  }
+
+  function changeHoverColor(isMouseOver) {
+    const line4 = document.getElementById("line4");
+    if (isMouseOver) {
+      line4.style.backgroundColor = "red";
+    } else {
+      line4.style.backgroundColor = "lightblue";
+    }
+  }
+</script>
+
+</body>
+</html>

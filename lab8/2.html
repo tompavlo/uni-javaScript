@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Зображення з підписом</title>
+  <style>
+    #container {
+      text-align: center;
+      margin-top: 50px;
+    }
+    #caption {
+      font-size: 20px;
+      color: black;
+      cursor: pointer;
+    }
+    img {
+      width: 300px;
+      height: auto;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div id="container">
+  <img id="image" src="quote-1.jpg" alt="Зображення 1">
+  <p id="caption">Це підпис до зображення 1</p>
+</div>
+
+<script>
+  const container = document.getElementById('container');
+
+  let imageToggle = false;
+
+  container.addEventListener('click', function(event) {
+    const caption = document.getElementById('caption');
+    const image = document.getElementById('image');
+
+    if (event.target.id === 'caption') {
+      caption.style.color = caption.style.color === 'red' ? 'black' : 'red';
+    } else if (event.target.id === 'image') {
+      if (imageToggle) {
+        image.src = 'quote-1.jpg';
+        caption.textContent = 'Це підпис до зображення 1';
+      } else {
+        image.src = 'https://picsum.photos/id/237/200/300';
+        caption.textContent = 'Це підпис до зображення 2';
+      }
+      imageToggle = !imageToggle;
+    }
+  });
+</script>
+
+</body>
+</html>

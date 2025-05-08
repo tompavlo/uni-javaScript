@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Замовлення меблів</title>
+  <script>
+    function validateForm() {
+      let product = document.forms["furnitureForm"]["product"].value;
+      let material = document.forms["furnitureForm"]["material"].value;
+      let quantity = document.forms["furnitureForm"]["quantity"].value;
+
+      if (product === "" || material === "" || quantity === "" || quantity <= 0) {
+        alert("Будь ласка, введіть усі дані коректно.");
+        return false;
+      }
+      return true;
+    }
+
+    function checkField(field) {
+      if (field.value.trim() === "" || (field.name === "quantity" && field.value <= 0)) {
+        alert("Помилка у полі: " + field.name);
+        field.focus();
+        field.select();
+      }
+    }
+  </script>
+</head>
+<body>
+<h1>Замовлення меблів</h1>
+<form name="furnitureForm" action="result.php" method="post" onsubmit="return validateForm()">
+  <label>Виріб:</label>
+  <select name="product" onchange="checkField(this)">
+    <option value="">-- Оберіть виріб --</option>
+    <option value="Шафа">Шафа</option>
+    <option value="Стіл">Стіл</option>
+    <option value="Сервант">Сервант</option>
+  </select><br><br>
+
+  <label>Матеріал:</label>
+  <select name="material" onchange="checkField(this)">
+    <option value="">-- Оберіть матеріал --</option>
+    <option value="Дуб">Дуб</option>
+    <option value="Горіх">Горіх</option>
+    <option value="Бук">Бук</option>
+  </select><br><br>
+
+  <label>Кількість:</label>
+  <input type="number" name="quantity" onchange="checkField(this)"><br><br>
+
+  <input type="submit" value="Замовити">
+</form>
+</body>
+</html>
