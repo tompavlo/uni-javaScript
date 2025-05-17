@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Побудова еліпса</title>
+  <style>
+    :root { font-family: sans-serif; }
+    body { margin: 2rem; display:flex; gap:2rem; align-items:flex-start; }
+    #form { display:flex; flex-direction:column; gap:.8rem; }
+    label span { display:inline-block; width:140px; }
+    input[type="number"]{ width:60px; }
+    canvas{ background:#ffeb3b; border:1px solid #000; }
+  </style>
+</head>
+<body>
+<div id="form">
+  <label><span>горизонтальна a=</span><input id="a" type="number" value="40" min="10"></label>
+  <label><span>вертикальна b=</span><input id="b" type="number" value="80" min="10"></label>
+  <button id="draw">Побудувати</button>
+</div>
+<canvas id="c" width="240" height="240"></canvas>
+
+<script>
+  const aI=document.getElementById('a'), bI=document.getElementById('b'), btn=document.getElementById('draw');
+  const ctx=document.getElementById('c').getContext('2d');
+  function axes(){
+    const w=ctx.canvas.width, h=ctx.canvas.height;
+    ctx.strokeStyle='#000'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(0,h/2); ctx.lineTo(w,h/2);
+    ctx.moveTo(w/2,0); ctx.lineTo(w/2,h);
+    ctx.stroke();
+  }
+  function draw(){
+    const a=+aI.value, b=+bI.value; if(!a||!b) return;
+    const w=ctx.canvas.width, h=ctx.canvas.height, cx=w/2, cy=h/2;
+    ctx.clearRect(0,0,w,h); axes();
+    ctx.beginPath();
+    for(let t=0;t<=2*Math.PI;t+=.01){ ctx.lineTo(cx+a*Math.cos(t), cy+b*Math.sin(t)); }
+    ctx.closePath(); ctx.lineWidth=3; ctx.stroke();
+  }
+  btn.onclick=draw; window.onload=draw;
+</script>
+</body>
+</html>

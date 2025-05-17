@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Кольоровий квадрат по колу</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f7f7f7;
+    }
+    canvas {
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+<canvas id="scene" width="400" height="400"></canvas>
+
+<script>
+  const canvas = document.getElementById("scene");
+  const ctx = canvas.getContext("2d");
+
+  const cx = canvas.width / 2;
+  const cy = canvas.height / 2;
+  const r = 140;
+
+  const size = 40;
+  const colors = ["#e74c3c", "#f1c40f", "#2ecc71", "#3498db"];
+  let colorIndex = 0;
+
+
+  let t = 0;
+  const speed = 0.02;
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const x = cx + r * Math.cos(t) - size / 2;
+    const y = cy + r * Math.sin(t) - size / 2;
+
+    if (t % Math.PI < speed) {
+      colorIndex = (colorIndex + 1) % colors.length;
+    }
+    ctx.fillStyle = colors[colorIndex];
+    ctx.fillRect(x, y, size, size);
+
+    t += speed;
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+</script>
+</body>
+</html>

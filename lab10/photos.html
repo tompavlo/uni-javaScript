@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Перегляд фотографій</title>
+  <style>
+    body      { font-family: system-ui, Arial, sans-serif; padding: 2rem; }
+    label     { font-weight: 600; margin-right: .5rem; }
+    select    { padding: .4rem .6rem; font-size: 1rem; }
+    #viewer   { margin-top: 1.5rem; max-width: 600px; }
+    #viewer img{ width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+  </style>
+</head>
+<body>
+
+<label for="photoSelect">Оберіть фото:</label>
+<select id="photoSelect">
+  <option value="" selected disabled>— виберіть назву —</option>
+  <option value="cher10-1-1.jpg">Чну всередині</option>
+  <option value="57e3d0474351ab14f1dc8460962e33791c3ad6e04e50744077297bd5924ac6_640.jpg">Ліонель Месі</option>
+  <option value="55e2dd474a50b10ff3d8992cc12c30771037dbf85254794e70267cdd9444_640.jpg">Кльова машинка</option>
+</select>
+
+<div id="viewer"></div>
+
+<script>
+  const select = document.getElementById('photoSelect');
+  const viewer = document.getElementById('viewer');
+
+  select.addEventListener('change', () => {
+    viewer.innerHTML = '';
+
+    const src = select.value;
+    if (!src) return;
+
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = select.options[select.selectedIndex].text;
+    viewer.appendChild(img);
+  });
+</script>
+
+</body>
+</html>
